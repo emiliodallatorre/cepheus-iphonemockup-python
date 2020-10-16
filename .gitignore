@@ -1,0 +1,9 @@
+*.png
+
+!iPhoneX.*
+
+venv/
+
+.DS_Store
+
+.idea/
