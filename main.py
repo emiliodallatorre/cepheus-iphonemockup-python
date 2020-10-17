@@ -27,19 +27,21 @@ def resize_screenshot(screenshot: Image) -> Image:
 
 
 def main():
-    get_png_list()
-    iphone_mockup: Image = load_iphone_mockup()
+    project_name: str = input("Inserisci nome progetto: ")
 
-    for screenshot_path in get_png_list():
-        print("Processo ", screenshot_path)
+    iphone_mockup: Image = load_iphone_mockup()
+    screenshot_path: list = get_png_list()
+
+    for index in range(len(screenshot_path)):
+        print("Processo ", screenshot_path[index])
 
         final: Image = Image.new("RGBA", (2000, 2000))
-        screenshot: Image = resize_screenshot(Image.open(screenshot_path))
+        screenshot: Image = resize_screenshot(Image.open(screenshot_path[index]))
 
         final.alpha_composite(screenshot, dest=(623, 180))
         final.alpha_composite(iphone_mockup)
 
-        final.save("result/" + screenshot_path.split()[0] + "-N.png")
+        final.save("result/SCREENSHOT-" + project_name + "-" + str(index + 1) + ".png")
 
 
 main()
