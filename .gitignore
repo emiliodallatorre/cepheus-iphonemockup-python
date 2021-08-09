@@ -1,6 +1,7 @@
 *.png
 
-!iPhoneX.*
+!iPhoneX.png
+!result/
 
 venv/
 
