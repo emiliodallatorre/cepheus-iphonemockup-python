@@ -1,6 +1,6 @@
 # Generatore di mockup iPhone
 
-![iPhoneX](iPhoneX.png)
+![screenshot](screenshot.png)
 
 Questo progetto è un semplice generatore di mockup nella cornice di un iPhone 11 Pro che, di fatto, consente di "incorniciare" i propri screenshot in un dispositivo iOS per renderli più appetibili per la pubblicazione sui social network e sui blog.
 
