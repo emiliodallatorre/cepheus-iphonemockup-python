@@ -19,7 +19,7 @@ def get_png_list() -> list:
     file_list: list = []
 
     for entity in listdir("."):
-        if isfile(entity) and entity.split(".")[1] == "PNG" and entity != "iPhoneX.png":
+        if isfile(entity) and entity.split(".")[1].upper() == "PNG" and entity != "iPhoneX.png":
             file_list.append(entity)
 
     file_list.sort(key=lambda file: int(file.split("_")[1].split(".")[0]))
