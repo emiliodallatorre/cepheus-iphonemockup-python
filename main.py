@@ -1,8 +1,18 @@
-from os import listdir
-from os.path import isfile
-from os import remove
+from os import remove, getcwd, listdir, mkdir
+from os.path import isfile, isdir
 
 from PIL import Image
+
+
+result_path: str = getcwd() + "/result/"
+
+
+def ensure_result_folder_exists():
+    path = getcwd() + "/result/"
+
+    if not isdir(path):
+        mkdir(path)
+        print(f"Creata la cartella {path}")
 
 
 def get_png_list() -> list:
@@ -20,10 +30,10 @@ def get_png_list() -> list:
 
 def delete_files():
     print("Inizio ad eliminare i file...")
-    for entity in listdir("./result/"):
-        if isfile("./result/" + entity):
+    for entity in listdir(result_path):
+        if isfile(result_path + entity):
             print("Rimuovo ", entity, ".")
-            remove("./result/" + entity)
+            remove(result_path + entity)
 
 
 def load_iphone_mockup() -> Image:
@@ -38,6 +48,8 @@ def resize_screenshot(screenshot: Image) -> Image:
 
 
 def main():
+    ensure_result_folder_exists()
+
     project_name: str = input("Inserisci nome progetto: ")
     delete: str = input("Eliminare i files esistenti? [Y/n]: ") or "Y"
     if delete.upper() == "Y":
@@ -47,15 +59,18 @@ def main():
     screenshot_path: list = get_png_list()
 
     for index in range(len(screenshot_path)):
-        print("[" + str(round(index / len(screenshot_path), 4) * 100) + "%] " + "Processo ", screenshot_path[index])
+        print("[" + str(round(index / len(screenshot_path), 4) *
+                        100) + "%] " + "Processo ", screenshot_path[index])
 
         final: Image = Image.new("RGBA", (2000, 2000))
-        screenshot: Image = resize_screenshot(Image.open(screenshot_path[index]))
+        screenshot: Image = resize_screenshot(
+            Image.open(screenshot_path[index]))
 
         final.alpha_composite(screenshot, dest=(623, 180))
         final.alpha_composite(iphone_mockup)
 
-        final.save("result/SCREENSHOT-" + project_name + "-" + str(index + 1) + ".png")
+        final.save("result/SCREENSHOT-" + project_name +
+                   "-" + str(index + 1) + ".png")
 
 
 main()
