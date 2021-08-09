@@ -10,11 +10,19 @@ Per utilizzare questo script è sufficiente clonare la repository ed inserire ne
 
 Per avviare il processo di framing è sufficiente invocare lo script `main.py` con una versione di Python3:
 
-```bash
+```sh
 python3 main.py
 ```
 
 Una volta avviato lo script, verrà chiesto il nome del progetto e se eliminare i precedenti risultati.
+
+### Installazione dei requisiti
+
+Nel caso il progetto desse errori di import, occorrerà installare i pacchetti richiesti tramite il seguente comando:
+
+```sh
+pip install -r requirements.txt
+```
 
 ## Contribuzioni
 
